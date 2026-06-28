@@ -1,97 +1,142 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fat2Fit - Fitness, Nutrition, and Progress Tracking</title>
-  <meta name="description" content="Fat2Fit is a modern iPhone fitness app for workouts, meals, progress, Apple Health, Apple Watch workouts, widgets, and private AI-powered coaching tools.">
-  <meta name="theme-color" content="#22c55e">
-  <meta property="og:title" content="Fat2Fit">
-  <meta property="og:description" content="A polished fitness companion for workouts, meals, progress, Apple Health, Apple Watch, widgets, and coaching tools.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/fat2fit-icon.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fat2Fit — Snap your meal, get instant macros</title>
+<meta name="description" content="Fat2Fit is an AI fitness coach that runs entirely on your iPhone. Snap a meal, get instant macros — private, no cloud, no ads. Recipes, workouts, Apple Watch, fasting.">
+<meta property="og:title" content="Fat2Fit — Snap your meal, get instant macros">
+<meta property="og:description" content="Private, on-device AI fitness coach. Snap a meal → instant macros. Recipes, adaptive workouts, Apple Watch.">
+<meta property="og:image" content="https://forgebyte-lab.github.io/fat2fit-support/assets/01_food_ai.png">
   <link rel="icon" href="assets/fat2fit-icon.jpg">
-  <link rel="stylesheet" href="styles.css">
+<style>
+  :root{
+    --emerald:#0FA589; --emerald-d:#0B7F94; --ink:#0c1b18; --muted:#5d6b67;
+    --bg:#f6fbf9; --card:#ffffff; --line:#e6efec;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:#000;color:#fff;border-radius:14px;padding:14px 22px;font-weight:600;text-decoration:none;font-size:17px}
+  .btn small{display:block;font-size:11px;opacity:.8;font-weight:500;line-height:1}
+  .btn b{font-size:19px;font-weight:700}
+  .pill{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;margin:4px}
+
+  /* Hero */
+  header.hero{background:
+      radial-gradient(900px 500px at 15% -10%, rgba(255,255,255,.18), transparent 60%),
+      linear-gradient(157deg,#19D7A0 0%, var(--emerald) 54%, var(--emerald-d) 100%);
+    color:#fff;padding:90px 0 110px;text-align:center;position:relative;overflow:hidden}
+  .kicker{font-size:13px;letter-spacing:3px;font-weight:800;opacity:.9;text-transform:uppercase}
+  h1{font-size:clamp(36px,6vw,68px);font-weight:800;letter-spacing:-1.5px;line-height:1.02;margin:14px 0 18px}
+  .sub{font-size:clamp(17px,2.4vw,22px);opacity:.95;max-width:640px;margin:0 auto 30px}
+  .hero-shot{margin-top:46px;max-width:300px;width:60%;border-radius:38px;box-shadow:0 40px 90px rgba(3,40,32,.45)}
+
+  /* Trust strip */
+  .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:26px}
+
+  section{padding:72px 0}
+  h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-1px;text-align:center;margin-bottom:8px}
+  .lead{text-align:center;color:var(--muted);font-size:18px;max-width:620px;margin:0 auto 44px}
+
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px}
+  .card .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:rgba(15,165,137,.12);margin-bottom:14px}
+  .card h3{font-size:19px;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* Screenshot gallery */
+  .gallery{display:flex;gap:18px;overflow-x:auto;padding:10px 4px 24px;scroll-snap-type:x mandatory}
+  .gallery img{height:520px;border-radius:30px;scroll-snap-align:center;flex:0 0 auto;box-shadow:0 24px 50px rgba(3,40,32,.16)}
+
+  /* Privacy band */
+  .band{background:linear-gradient(157deg,#0c2b25,#0a3a33);color:#fff;border-radius:28px;padding:54px 32px;text-align:center;margin:0 24px}
+  .band h2{color:#fff}
+  .band p{color:rgba(255,255,255,.82);max-width:620px;margin:10px auto 0;font-size:18px}
+
+  .cta{text-align:center;padding:84px 0}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px;text-align:center}
+  footer a{text-decoration:none;color:var(--emerald-d);font-weight:600}
+  .applemark{font-size:20px}
+</style>
 </head>
 <body>
-  <header class="shell nav">
-    <a class="brand" href="./" aria-label="Fat2Fit home">
-      <img class="brand-icon" src="assets/fat2fit-icon.jpg" alt="">
-      <span>Fat2Fit</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="./privacy-policy/">Privacy</a>
-      <a href="./support/">Support</a>
-      <a href="./terms/">Terms</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="shell hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Fitness tracking, refined</p>
-        <h1>Train, eat, recover, and understand your progress.</h1>
-        <p class="lead">Fat2Fit brings workouts, nutrition, body progress, Apple Health, Apple Watch activity, widgets, and coaching tools into one focused iPhone experience.</p>
-        <div class="actions">
-          <a class="button primary" href="./support/">Get Support</a>
-          <a class="button" href="./privacy-policy/">Read Privacy Policy</a>
-        </div>
-      </div>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">On-device AI · iPhone &amp; Apple Watch</div>
+    <h1>Snap your meal.<br>Get instant macros.</h1>
+    <p class="sub">Fat2Fit is an AI fitness coach that runs entirely on your iPhone. Point at a plate — it names every food and totals your calories &amp; macros in seconds. No cloud. No ads.</p>
+    <!-- Replace href with your live App Store URL once approved -->
+    <a class="btn" href="https://apps.apple.com/app/id6761145777"><span class="applemark"></span><span><small>Download on the</small><b>App Store</b></span></a>
+    <div class="trust">
+      <span class="pill">🔒 Private — photos never leave your phone</span>
+      <span class="pill">🚫 No ads</span>
+      <span class="pill">⌚ Apple Watch</span>
+    </div>
+    <br>
+    <img class="hero-shot" src="assets/01_food_ai.png" alt="Fat2Fit AI food log — instant macros from a photo">
+  </div>
+</header>
 
-      <div class="app-visual" aria-label="Fat2Fit app highlights">
-        <img class="hero-icon" src="assets/fat2fit-icon.jpg" alt="Fat2Fit app icon">
-        <div class="metric-stack">
-          <div class="metric active">
-            <span>Today</span>
-            <strong>Workout + nutrition</strong>
-          </div>
-          <div class="metric">
-            <span>Apple Health</span>
-            <strong>Private sync</strong>
-          </div>
-          <div class="metric">
-            <span>Progress</span>
-            <strong>Photos, weight, goals</strong>
-          </div>
-        </div>
-      </div>
-    </section>
+<section>
+  <div class="wrap">
+    <h2>One app for the whole journey</h2>
+    <p class="lead">Most people juggle five apps for food, recipes, and workouts. Fat2Fit is all of it — and the AI actually does the work.</p>
+    <div class="features">
+      <div class="card"><div class="ico">📸</div><h3>AI food log</h3><p>Snap a meal and on-device AI itemizes it and totals calories, protein, carbs &amp; fat — no manual typing.</p></div>
+      <div class="card"><div class="ico">🍳</div><h3>700+ recipes</h3><p>Browse, build an auto shopping list, and follow a hands-free step-by-step cook mode.</p></div>
+      <div class="card"><div class="ico">🏋️</div><h3>Adaptive workouts</h3><p>AI builds your week and makes it harder as you get stronger. Strength, cardio &amp; GPS runs.</p></div>
+      <div class="card"><div class="ico">💬</div><h3>AI coach</h3><p>Chat to log meals, plan your day, and stay accountable — any hour, on-device.</p></div>
+      <div class="card"><div class="ico">📈</div><h3>Photo progress</h3><p>One photo a day blends into a private timeline so you can actually see the change.</p></div>
+      <div class="card"><div class="ico">⌚</div><h3>Apple Watch</h3><p>Rings, heart rate, quick logging, and GPS cardio right from your wrist.</p></div>
+    </div>
+  </div>
+</section>
 
-    <section class="band">
-      <div class="shell grid">
-        <article class="tile">
-          <span class="tile-mark green"></span>
-          <h2>Workouts that travel with you</h2>
-          <p>Plan sessions, follow exercise guidance, track cardio, review history, and keep workout data connected across iPhone, Apple Watch, widgets, and Apple Health.</p>
-        </article>
-        <article class="tile">
-          <span class="tile-mark blue"></span>
-          <h2>Food and progress in one view</h2>
-          <p>Log meals, scan or search foods where available, track water, review calories and macros, and keep progress photos and measurements close to your goals.</p>
-        </article>
-        <article class="tile">
-          <span class="tile-mark coral"></span>
-          <h2>Premium coaching tools</h2>
-          <p>AI-assisted workout, food, and recipe experiences help make the app feel more personal while keeping health decisions in your control.</p>
-        </article>
-      </div>
-    </section>
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>See it in action</h2>
+    <p class="lead">Real screens from the app.</p>
+  </div>
+  <div class="wrap">
+    <div class="gallery">
+      <img src="assets/01_food_ai.png" alt="AI food log">
+      <img src="assets/02_recipes.png" alt="Recipes">
+      <img src="assets/03_coach.png" alt="AI coach">
+      <img src="assets/04_progress.png" alt="Photo progress">
+      <img src="assets/05_plans.png" alt="Adaptive plans">
+      <img src="assets/06_nutrition.png" alt="Nutrition tracking">
+      <img src="assets/07_motivation.png" alt="Stay motivated">
+    </div>
+  </div>
+</section>
 
-    <section class="shell split">
-      <div>
-        <p class="eyebrow">Privacy basics</p>
-        <h2>Your fitness data deserves care.</h2>
-      </div>
-      <div class="privacy-list">
-        <p>Fat2Fit only asks for sensitive permissions when a feature needs them, such as Health, camera/photos, notifications, location for workout routes, or Apple Watch workout support.</p>
-        <p>HealthKit data is used for fitness features and is not sold, used for advertising, or shared with third parties for marketing.</p>
-        <p>Subscriptions and in-app purchases are processed by Apple. We do not receive or store your payment card details.</p>
-      </div>
-    </section>
-  </main>
+<section>
+  <div class="band">
+    <h2>Private by design</h2>
+    <p>The food recognition and macro math run on your iPhone's Neural Engine. Your meal photos and health data never get uploaded to us or sold to anyone. Privacy isn't a setting here — it's the architecture.</p>
+  </div>
+</section>
 
-  <footer class="shell footer">
-    <p>&copy; 2026 ForgeByte Lab. All rights reserved.</p>
-  </footer>
+<div class="cta">
+  <h2>Start free today</h2>
+  <p class="lead">No account needed to try. iPhone &amp; Apple Watch.</p>
+  <a class="btn" href="https://apps.apple.com/app/id6761145777"><span class="applemark"></span><span><small>Download on the</small><b>App Store</b></span></a>
+</div>
+
+<footer>
+  <div class="wrap">
+    Fat2Fit by ForgeByte Lab ·
+    <a href="support/">Support</a> ·
+    <a href="privacy-policy/">Privacy</a> ·
+    <a href="terms/">Terms</a>
+    <br><br>
+    © 2026 Haider Ali · Apple, the Apple logo, App Store and Apple Watch are trademarks of Apple Inc.
+  </div>
+</footer>
+
 </body>
 </html>
